@@ -15,7 +15,7 @@ add_wbollock:
     - groups:
     {% if grains['os_family'] == 'Debian' %}
       - sudo
-    {% elif grains['os_family'] == 'Redhat' %}
+    {% elif grains['os_family'] == 'RedHat' %}
       - wheel
     {% endif %}
       - wbollock
