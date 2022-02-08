@@ -12,7 +12,7 @@ test-syndic:
 
 test-highstate:
   tags:
-    - salt-master
+    - salt-syndic
   stage: test
   script:
     - echo "Testing highstate on syndics"
@@ -24,7 +24,7 @@ test-highstate:
 
 deploy-highstate:
   tags:
-    - salt-master
+    - salt-syndic
   stage: deploy
   script:
     - echo "Deploying highstate from syndics"
