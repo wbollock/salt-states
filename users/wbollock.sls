@@ -1,3 +1,9 @@
+#!jinja|yaml
+
+wbollock:
+  group.present:
+    - gid: 1000
+
 wbollock:
   user.present:
     - fullname: Will Bollock
