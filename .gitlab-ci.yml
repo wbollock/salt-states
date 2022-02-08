@@ -6,6 +6,7 @@ test-syndic:
     - echo "Rendering pillar on syndics"
     - cd /srv/salt
     - git reset --hard
+    - git clean -d -f
     - git pull
     - sudo salt '*' pillar.items
 
@@ -17,6 +18,7 @@ test-highstate:
     - echo "Testing highstate on master"
     - cd /srv/salt
     - git reset --hard
+    - git clean -d -f
     - git pull
     - sudo salt '*' state.highstate test=true --state-output=changes
 
