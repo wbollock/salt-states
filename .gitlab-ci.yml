@@ -1,0 +1,25 @@
+# build-job:
+#   tags:
+#     - salt-master
+#   stage: build
+#   script:
+#     - echo "Hello, $GITLAB_USER_LOGIN!"
+
+test-job:
+  tags:
+    - salt-master
+  stage: test
+  script:
+    - echo "Rendering pillar"
+    - cd /srv/pillar
+    - git reset --hard
+    - git pull
+    - sudo salt '*' pillar.items
+
+# deploy-prod:
+#   tags:
+#     - salt-master
+#   stage: deploy
+#   script:
+#     - cd /srv/pillar
+#     - git pull
