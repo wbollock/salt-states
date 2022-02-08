@@ -15,7 +15,7 @@ test-highstate:
     - salt-master
   stage: test
   script:
-    - echo "Testing highstate on master"
+    - echo "Testing highstate on syndics"
     - cd /srv/salt
     - git reset --hard
     - git clean -d -f
@@ -27,6 +27,6 @@ deploy-highstate:
     - salt-master
   stage: deploy
   script:
-    - echo "Deploying highstate from master"
+    - echo "Deploying highstate from syndics"
     - sudo salt '*' state.highstate --state-output=changes
 
