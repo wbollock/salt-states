@@ -24,7 +24,8 @@ test-highstate:
 
 deploy-highstate:
   tags:
-    - salt-syndic
+    - syndic1-cjj1
+    - syndic1-atl1
   stage: deploy
   script:
     - echo "Deploying highstate from syndics"
