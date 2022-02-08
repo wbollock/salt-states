@@ -1,25 +1,30 @@
-# build-job:
-#   tags:
-#     - salt-master
-#   stage: build
-#   script:
-#     - echo "Hello, $GITLAB_USER_LOGIN!"
-
-test-job:
+test-syndic:
   tags:
-    - salt-master
+    - salt-syndic
   stage: test
   script:
-    - echo "Rendering pillar"
-    - cd /srv/pillar
+    - echo "Rendering pillar on syndics"
+    - cd /srv/salt
     - git reset --hard
     - git pull
     - sudo salt '*' pillar.items
 
-# deploy-prod:
-#   tags:
-#     - salt-master
-#   stage: deploy
-#   script:
-#     - cd /srv/pillar
-#     - git pull
+test-highstate:
+  tags:
+    - salt-master
+  stage: test
+  script:
+    - echo "Testing highstate on master"
+    - cd /srv/salt
+    - git reset --hard
+    - git pull
+    - sudo salt '*' state.highstate test=true --state-output=changes
+
+deploy-highstate:
+  tags:
+    - salt-master
+  stage: deploy
+  script:
+    - echo "Deploying highstate from master"
+    - sudo salt '*' state.highstate --state-output=changes
+
