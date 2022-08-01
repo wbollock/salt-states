@@ -1,0 +1,40 @@
+test-syndic:
+  tags:
+    - salt-syndic
+  stage: test
+  script:
+    - echo "Rendering pillar on syndics"
+    - cd /srv/salt
+    - git reset --hard
+    - git clean -d -f
+    - git pull
+    - sudo salt '*' pillar.items
+
+test-highstate:
+  tags:
+    - salt-syndic
+  stage: test
+  script:
+    - echo "Testing highstate on syndics"
+    - cd /srv/salt
+    - git reset --hard
+    - git clean -d -f
+    - git pull
+    - sudo salt '*' state.highstate test=true --state-output=changes
+
+deploy-highstate-cjj1:
+  tags:
+    - syndic1-cjj1
+  stage: deploy
+  script:
+    - echo "Deploying highstate from syndics"
+    - sudo salt '*' state.highstate --state-output=changes
+
+deploy-highstate-atl1:
+  tags:
+    - syndic1-atl1
+  stage: deploy
+  script:
+    - echo "Deploying highstate from syndics"
+    - sudo salt '*' state.highstate --state-output=changes
+
