@@ -1,4 +1,9 @@
-packages_vim:
-  pkg.installed:
-    - name: vim
+#!jinja|yaml
 
+common_packages:
+  pkg.installed:
+    - pkgs:
+      - vim
+      - sudo
+      - curl
+      - neofetch
